@@ -3,7 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RationalNumbers", "RationalNumbers\RationalNumbers.csproj", "{E89E92BB-594F-483E-B62A-38E853A31283}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RationalNumbers.Tests", "RationalNumbers.Tests\RationalNumbers.Tests.csproj", "{E8B9945E-3B74-42DF-AD58-E67B4BB0CEF9}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E89E92BB-594F-483E-B62A-38E853A31283}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E89E92BB-594F-483E-B62A-38E853A31283}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E89E92BB-594F-483E-B62A-38E853A31283}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E89E92BB-594F-483E-B62A-38E853A31283}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8B9945E-3B74-42DF-AD58-E67B4BB0CEF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8B9945E-3B74-42DF-AD58-E67B4BB0CEF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8B9945E-3B74-42DF-AD58-E67B4BB0CEF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8B9945E-3B74-42DF-AD58-E67B4BB0CEF9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
