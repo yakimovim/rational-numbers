@@ -408,5 +408,16 @@ namespace EdlinSoftware.RationalNumbers
 
             return n / d;
         }
+
+        /// <summary>
+        /// Returns absolute value of this number.
+        /// </summary>
+        public RationalNumber Abs()
+        {
+            if (Numerator >= 0)
+                return this;
+
+            return -this;
+        }
     }
 }

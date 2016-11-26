@@ -213,5 +213,22 @@ namespace EdlinSoftware.RationalNumbers.Tests
             Assert.Throws<DivideByZeroException>(() => new RationalNumber(1, 1) / new RationalNumber(0, 1));
         }
 
+        [Theory]
+        [InlineData(2, 1, true)]
+        [InlineData(-2, 1, false)]
+        [InlineData(long.MaxValue, 1, true)]
+        [InlineData(long.MinValue + 1, 1, false)]
+        public void Abs_Values(long numerator1, long denominator1, bool isSame)
+        {
+            if (isSame)
+            {
+                Assert.Equal(new RationalNumber(numerator1, denominator1), new RationalNumber(numerator1, denominator1).Abs());
+            }
+            else
+            {
+                Assert.Equal(new RationalNumber(-numerator1, denominator1), new RationalNumber(numerator1, denominator1).Abs());
+
+            }
+        }
     }
 }
