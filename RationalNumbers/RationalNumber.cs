@@ -133,8 +133,11 @@ namespace EdlinSoftware.RationalNumbers
             var d2 = rn2.Denominator;
             if (inverse)
             {
-                n1 = -n1;
-                n2 = -n2;
+                checked
+                {
+                    n1 = -n1;
+                    n2 = -n2;
+                }
             }
 
             return inverse ? !IsLess(n1, d2, n2, d1) : IsLess(n1, d2, n2, d1);
@@ -229,7 +232,10 @@ namespace EdlinSoftware.RationalNumbers
 
         public static RationalNumber operator -(RationalNumber rn)
         {
-            return new RationalNumber(-rn.Numerator, rn.Denominator);
+            checked
+            {
+                return new RationalNumber(-rn.Numerator, rn.Denominator);
+            }
         }
 
         public static RationalNumber operator +(RationalNumber rn1, RationalNumber rn2)
@@ -251,7 +257,10 @@ namespace EdlinSoftware.RationalNumbers
                 e /= gcd;
             }
 
-            return new RationalNumber(a * b + c * d, e * f);
+            checked
+            {
+                return new RationalNumber(a * b + c * d, e * f);
+            }
         }
 
         public static RationalNumber operator -(RationalNumber rn1, RationalNumber rn2)
@@ -280,7 +289,10 @@ namespace EdlinSoftware.RationalNumbers
                 d1 /= gcd;
             }
 
-            return new RationalNumber(n1 * n2, d1 * d2);
+            checked
+            {
+                return new RationalNumber(n1 * n2, d1 * d2);
+            }
         }
 
         public static RationalNumber operator /(RationalNumber rn1, RationalNumber rn2)
@@ -307,7 +319,10 @@ namespace EdlinSoftware.RationalNumbers
                 d2 /= gcd;
             }
 
-            return new RationalNumber(n1 * d2, d1 * n2);
+            checked
+            {
+                return new RationalNumber(n1 * d2, d1 * n2);
+            }
         }
 
         public static implicit operator RationalNumber(byte value)
