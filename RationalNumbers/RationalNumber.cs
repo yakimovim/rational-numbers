@@ -8,6 +8,23 @@ namespace EdlinSoftware.RationalNumbers
     public struct RationalNumber : IEquatable<RationalNumber>, IComparable<RationalNumber>
     {
         /// <summary>
+        /// Zero value.
+        /// </summary>
+        public static readonly RationalNumber Zero = new RationalNumber(0, 1);
+        /// <summary>
+        /// One value.
+        /// </summary>
+        public static readonly RationalNumber One = new RationalNumber(1, 1);
+        /// <summary>
+        /// Maximum value.
+        /// </summary>
+        public static readonly RationalNumber MaxValue = new RationalNumber(long.MaxValue, 1);
+        /// <summary>
+        /// Minimum value.
+        /// </summary>
+        public static readonly RationalNumber MinValue = new RationalNumber(long.MinValue + 1, 1);
+
+        /// <summary>
         /// Numerator of value.
         /// </summary>
         public readonly long Numerator;
