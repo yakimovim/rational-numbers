@@ -87,6 +87,7 @@ namespace EdlinSoftware.RationalNumbers.Tests
 
         [Theory]
         [InlineData(4, 2, 4, 2, false)]
+        [InlineData(-4, 2, -4, 2, false)]
         [InlineData(4, 2, 2, 1, false)]
         [InlineData(4, 2, -2, -1, false)]
         [InlineData(4, 2, -2, 1, false)]
@@ -105,6 +106,7 @@ namespace EdlinSoftware.RationalNumbers.Tests
 
         [Theory]
         [InlineData(4, 2, 4, 2, false)]
+        [InlineData(-4, 2, -4, 2, false)]
         [InlineData(4, 2, 2, 1, false)]
         [InlineData(4, 2, -2, -1, false)]
         [InlineData(4, 2, -2, 1, true)]
@@ -120,6 +122,45 @@ namespace EdlinSoftware.RationalNumbers.Tests
             var rationalNumber2 = new RationalNumber(numerator2, denominator2);
 
             Assert.Equal(isTrue, rationalNumber1 > rationalNumber2);
+        }
+
+        [Theory]
+        [InlineData(1, 2, 4, 2)]
+        [InlineData(-2, 1, 4, 2)]
+        [InlineData(long.MaxValue - 2, long.MaxValue, long.MaxValue - 1, long.MaxValue)]
+        [InlineData(long.MinValue + 1, long.MaxValue, long.MinValue + 2, long.MaxValue)]
+        public void CompareTo_FirstIsLess_Values(long numerator1, long denominator1, long numerator2, long denominator2)
+        {
+            var rationalNumber1 = new RationalNumber(numerator1, denominator1);
+            var rationalNumber2 = new RationalNumber(numerator2, denominator2);
+
+            Assert.True(rationalNumber1.CompareTo(rationalNumber2) < 0);
+        }
+
+        [Theory]
+        [InlineData(4, 2, 1, 2)]
+        [InlineData(2, 1, -2, 1)]
+        [InlineData(long.MaxValue - 1, long.MaxValue, long.MaxValue - 2, long.MaxValue)]
+        [InlineData(long.MinValue + 2, long.MaxValue, long.MinValue + 1, long.MaxValue)]
+        public void CompareTo_SecondIsLess_Values(long numerator1, long denominator1, long numerator2, long denominator2)
+        {
+            var rationalNumber1 = new RationalNumber(numerator1, denominator1);
+            var rationalNumber2 = new RationalNumber(numerator2, denominator2);
+
+            Assert.True(rationalNumber1.CompareTo(rationalNumber2) > 0);
+        }
+
+        [Theory]
+        [InlineData(4, 2, 2, 1)]
+        [InlineData(-2, 1, -2, 1)]
+        [InlineData(long.MaxValue - 1, long.MaxValue, long.MaxValue - 1, long.MaxValue)]
+        [InlineData(long.MinValue + 1, long.MaxValue, long.MinValue + 1, long.MaxValue)]
+        public void CompareTo_BothEqual_Values(long numerator1, long denominator1, long numerator2, long denominator2)
+        {
+            var rationalNumber1 = new RationalNumber(numerator1, denominator1);
+            var rationalNumber2 = new RationalNumber(numerator2, denominator2);
+
+            Assert.True(rationalNumber1.CompareTo(rationalNumber2) == 0);
         }
 
         [Theory]

@@ -5,7 +5,7 @@ namespace EdlinSoftware.RationalNumbers
     /// <summary>
     /// Represents rational number.
     /// </summary>
-    public struct RationalNumber : IEquatable<RationalNumber>
+    public struct RationalNumber : IEquatable<RationalNumber>, IComparable<RationalNumber>
     {
         /// <summary>
         /// Numerator of value.
@@ -118,6 +118,8 @@ namespace EdlinSoftware.RationalNumbers
 
         public static bool operator <(RationalNumber rn1, RationalNumber rn2)
         {
+            if (rn1.Equals(rn2))
+            { return false; }
             if (rn1.Numerator < 0 && rn2.Numerator >= 0)
             { return true; }
             if (rn1.Numerator >= 0 && rn2.Numerator < 0)
@@ -214,6 +216,15 @@ namespace EdlinSoftware.RationalNumbers
         public static bool operator >=(RationalNumber rn1, RationalNumber rn2)
         {
             return (rn1 == rn2) || (rn1 > rn2);
+        }
+
+        public int CompareTo(RationalNumber other)
+        {
+            if (this < other)
+                return -1;
+            if (this == other)
+                return 0;
+            return 1;
         }
 
         public static RationalNumber operator -(RationalNumber rn)
