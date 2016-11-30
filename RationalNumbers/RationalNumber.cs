@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace EdlinSoftware.RationalNumbers
 {
@@ -28,11 +29,26 @@ namespace EdlinSoftware.RationalNumbers
         /// Numerator of value.
         /// </summary>
         public readonly long Numerator;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private long _denominator;
+
         /// <summary>
         /// Denominator of value.
         /// </summary>
         /// <remarks>This is always positive value.</remarks>
-        public readonly long Denominator;
+        public long Denominator
+        {
+            [DebuggerStepThrough]
+            get
+            {
+                // protection from default constructor.
+                if (_denominator == 0)
+                { _denominator = 1; }
+
+                return _denominator;
+            }
+        }
 
         /// <summary>
         /// Initializes instance of <see cref="RationalNumber"/>
@@ -50,14 +66,14 @@ namespace EdlinSoftware.RationalNumbers
             if (numerator == 0)
             {
                 Numerator = 0;
-                Denominator = 1;
+                _denominator = 1;
             }
             else
             {
                 var greatestCommonDenominator = GreatestCommonDenominator(numerator, denominator);
 
                 Numerator = denominator > 0 ? numerator / greatestCommonDenominator : -numerator / greatestCommonDenominator;
-                Denominator = Math.Abs(denominator / greatestCommonDenominator);
+                _denominator = Math.Abs(denominator / greatestCommonDenominator);
             }
         }
 
@@ -157,70 +173,9 @@ namespace EdlinSoftware.RationalNumbers
                 }
             }
 
-            return inverse ? !IsLess(n1, d2, n2, d1) : IsLess(n1, d2, n2, d1);
-        }
-
-        /// <summary>
-        /// Checks if <paramref name="a"/>*<paramref name="b"/> is less than <paramref name="c"/>*<paramref name="d"/>.
-        /// </summary>
-        private static bool IsLess(long a, long b, long c, long d)
-        {
-            // Solve: (a*b < c*d) 
-
-            // a = a0 + n*a1
-            // b = b0 + n*b1
-            // c = c0 + n*c1
-            // d = d0 + n*d1
-            // n = 2^32
-
-            ulong a0 = (ulong)a & 0xFFFFFFFF;
-            ulong a1 = (ulong)a >> 32;
-            ulong b0 = (ulong)b & 0xFFFFFFFF;
-            ulong b1 = (ulong)b >> 32;
-            ulong c0 = (ulong)c & 0xFFFFFFFF;
-            ulong c1 = (ulong)c >> 32;
-            ulong d0 = (ulong)d & 0xFFFFFFFF;
-            ulong d1 = (ulong)d >> 32;
-
-            // Solve: a0*b0 + (a0*b1 + a1*b0)*n + a1*b1*n*n < c0*d0 +(c0*d1 + c1*d0)*n + c1*d1*n*n
-            UInt64 x00 = a0 * b0;
-            UInt64 x01 = c0 * d0;
-
-            // this one may overflow, so split them up even more:
-            ulong x10 = (a0 * b1) & 1 + (a1 * b0) & 1; // lower bit
-            ulong x11 = (c0 * d1) & 1 + (c1 * d0) & 1; // lower bit
-            ulong x20 = a0 * b1 / 2 + a1 * b0 / 2; // top 63 bits
-            ulong x21 = c0 * d1 / 2 + c1 * d0 / 2; // top 63 bits
-            if (x10 == 2)
-            {
-                x20++;
-                x10 = 0;
-            }
-            if (x11 == 2)
-            {
-                x21++;
-                x11 = 0;
-            }
-
-            UInt64 x30 = a1 * b1;
-            UInt64 x31 = c1 * d1;
-
-            if (x30 < x31)
-                return true;
-            else if (x30 > x31)
-                return false;
-            else if (x20 < x21)
-                return true;
-            else if (x20 > x21)
-                return false;
-            else if (x10 < x11)
-                return true;
-            else if (x10 > x11)
-                return false;
-            else if (x00 < x01)
-                return true;
-            else
-                return false;
+            return inverse 
+                ? !ComparerOfMultiplications.IsLess((ulong)n1, (ulong)d2, (ulong)n2, (ulong)d1) 
+                : ComparerOfMultiplications.IsLess((ulong)n1, (ulong)d2, (ulong)n2, (ulong)d1);
         }
 
         public static bool operator >(RationalNumber rn1, RationalNumber rn2)

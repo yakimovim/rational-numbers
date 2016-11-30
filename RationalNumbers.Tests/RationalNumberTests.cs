@@ -6,6 +6,15 @@ namespace EdlinSoftware.RationalNumbers.Tests
     public class RationalNumberTests
     {
         [Fact]
+        public void DefaultValueIsOne()
+        {
+            var rationalNumber = default(RationalNumber);
+
+            Assert.Equal(0, rationalNumber.Numerator);
+            Assert.Equal(1, rationalNumber.Denominator);
+        }
+
+        [Fact]
         public void Constructor_ShouldThrowArgumentOutOfRangeException_IfDenominatorIsNull()
         {
             var exception = Assert.Throws<ArgumentOutOfRangeException>(() => new RationalNumber(1, 0));
@@ -96,6 +105,8 @@ namespace EdlinSoftware.RationalNumbers.Tests
         [InlineData(long.MaxValue - 1, long.MaxValue, long.MaxValue - 1, long.MaxValue, false)]
         [InlineData(long.MaxValue - 2, long.MaxValue, long.MaxValue - 1, long.MaxValue, true)]
         [InlineData(long.MinValue + 2, long.MaxValue, long.MinValue + 1, long.MaxValue, false)]
+        [InlineData(100000000L, 1, 10000000000L, 101, false)]
+        [InlineData(-100000000L, 1, -10000000000L, 101, true)]
         public void LessOperator_Values(long numerator1, long denominator1, long numerator2, long denominator2, bool isTrue)
         {
             var rationalNumber1 = new RationalNumber(numerator1, denominator1);
@@ -116,6 +127,8 @@ namespace EdlinSoftware.RationalNumbers.Tests
         [InlineData(long.MaxValue - 1, long.MaxValue, long.MaxValue - 1, long.MaxValue, false)]
         [InlineData(long.MaxValue - 2, long.MaxValue, long.MaxValue - 1, long.MaxValue, false)]
         [InlineData(long.MinValue + 2, long.MaxValue, long.MinValue + 1, long.MaxValue, true)]
+        [InlineData(100000000L, 1, 10000000000L, 101, true)]
+        [InlineData(-100000000L, 1, -10000000000L, 101, false)]
         public void GreaterOperator_Values(long numerator1, long denominator1, long numerator2, long denominator2, bool isTrue)
         {
             var rationalNumber1 = new RationalNumber(numerator1, denominator1);
