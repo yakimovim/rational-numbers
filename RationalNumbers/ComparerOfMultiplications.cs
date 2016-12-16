@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace EdlinSoftware.RationalNumbers
+﻿namespace EdlinSoftware.RationalNumbers
 {
     /// <summary>
     /// Contains logic for comparison of two multiplications.
@@ -54,10 +52,12 @@ namespace EdlinSoftware.RationalNumbers
 
             // a*b = a0*b0 + (a0*b1 + a1*b0)*n + a1*b1*n*n
 
+            // ReSharper disable InconsistentNaming
             var a0b0Halves32 = Get32Halves(aHalves32.Lo * bHalves32.Lo);
 
             var a0b1Halves32 = Get32Halves(aHalves32.Lo * bHalves32.Hi);
             var a1b0Halves32 = Get32Halves(aHalves32.Hi * bHalves32.Lo);
+            // ReSharper restore InconsistentNaming
 
             checked
             {

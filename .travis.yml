@@ -1,0 +1,5 @@
+language: csharp
+solution: RationalNumbers.sln
+script:
+  - xbuild /p:Configuration=Release RationalNumbers.sln
+  - mono ./packages/xunit.runner.console.*/tools/xunit.console.exe ./RationalNumbers.Tests/bin/Release/EdlinSoftware.RationalNumbers.Tests.dll
