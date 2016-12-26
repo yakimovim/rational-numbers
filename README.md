@@ -1,3 +1,5 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/ly4kn3f900aw8i90/branch/master?svg=true)](https://ci.appveyor.com/project/IvanIakimov/rational-numbers/branch/master)
+
 # Rational Numbers library
 
 This library implements structure for presentation of rational numbers in .NET. The implementation is based on numerator and denomination which are presented by two 'long' values. Denominator is always positive and numerator can have any sign. Rational numbers in the library are presented in the form of irreducible fractions. Algorithm for calculation of greatest common divisor is used to reduce numbers into this form.
