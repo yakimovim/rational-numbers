@@ -1,7 +1,17 @@
 ﻿{
+  "name": "EdlinSoftware.RationalNumbers",
+  "version": "1.0.0",
+  "description": "EdlinSoftware Rational Numbers Library",
+  "copyright": "Copyright © 2016 EdlinSoftware",
+  "packOptions": {
+    "projectUrl": "https://github.com/yakimovim/rational-numbers",
+    "licenseUrl": "https://github.com/yakimovim/rational-numbers/blob/master/LICENSE",
+    "tags": [
+      "Math"
+    ]
+  },
   "supports": {},
   "dependencies": {
-    //"Microsoft.NETCore.Portable.Compatibility": "1.0.1",
     "NETStandard.Library": "1.6.1"
   },
   "frameworks": {
