@@ -3,9 +3,16 @@
   "version": "1.0.0",
   "description": "EdlinSoftware Rational Numbers Library",
   "copyright": "Copyright © 2016 EdlinSoftware",
+  "authors": [
+    "Ivan Iakimov (edlinsoft@gmail.com)"
+  ],
   "packOptions": {
+    "owners": [
+      "Ivan Iakimov (edlinsoft@gmail.com)"
+    ],
     "projectUrl": "https://github.com/yakimovim/rational-numbers",
     "licenseUrl": "https://github.com/yakimovim/rational-numbers/blob/master/LICENSE",
+    "iconUrl": "https://github.com/yakimovim/rational-numbers/blob/master/RationalNumbers/math.ico",
     "tags": [
       "Math"
     ]

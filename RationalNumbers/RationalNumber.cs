@@ -139,16 +139,19 @@ namespace EdlinSoftware.RationalNumbers
             return Numerator + "/" + Denominator;
         }
 
+        /// <inheritdoc />
         public static bool operator ==(RationalNumber rn1, RationalNumber rn2)
         {
             return rn1.Equals(rn2);
         }
 
+        /// <inheritdoc />
         public static bool operator !=(RationalNumber rn1, RationalNumber rn2)
         {
             return !(rn1 == rn2);
         }
 
+        /// <inheritdoc />
         public static bool operator <(RationalNumber rn1, RationalNumber rn2)
         {
             if (rn1.Equals(rn2))
@@ -178,21 +181,25 @@ namespace EdlinSoftware.RationalNumbers
                 : ComparerOfMultiplications.IsLess((ulong)n1, (ulong)d2, (ulong)n2, (ulong)d1);
         }
 
+        /// <inheritdoc />
         public static bool operator >(RationalNumber rn1, RationalNumber rn2)
         {
             return !(rn1 == rn2) && !(rn1 < rn2);
         }
 
+        /// <inheritdoc />
         public static bool operator <=(RationalNumber rn1, RationalNumber rn2)
         {
             return (rn1 == rn2) || (rn1 < rn2);
         }
 
+        /// <inheritdoc />
         public static bool operator >=(RationalNumber rn1, RationalNumber rn2)
         {
             return (rn1 == rn2) || (rn1 > rn2);
         }
 
+        /// <inheritdoc />
         public int CompareTo(RationalNumber other)
         {
             if (this < other)
@@ -202,6 +209,7 @@ namespace EdlinSoftware.RationalNumbers
             return 1;
         }
 
+        /// <inheritdoc />
         public static RationalNumber operator -(RationalNumber rn)
         {
             checked
@@ -210,6 +218,7 @@ namespace EdlinSoftware.RationalNumbers
             }
         }
 
+        /// <inheritdoc />
         public static RationalNumber operator +(RationalNumber rn1, RationalNumber rn2)
         {
             // (a*b + c*d)/(e*f) = (n1*d2 + n2*d1)/(d1*d2)
@@ -235,11 +244,13 @@ namespace EdlinSoftware.RationalNumbers
             }
         }
 
+        /// <inheritdoc />
         public static RationalNumber operator -(RationalNumber rn1, RationalNumber rn2)
         {
             return rn1 + (-rn2);
         }
 
+        /// <inheritdoc />
         public static RationalNumber operator *(RationalNumber rn1, RationalNumber rn2)
         {
             var n1 = rn1.Numerator;
@@ -267,6 +278,7 @@ namespace EdlinSoftware.RationalNumbers
             }
         }
 
+        /// <inheritdoc />
         public static RationalNumber operator /(RationalNumber rn1, RationalNumber rn2)
         {
             if(rn2.Numerator == 0)
@@ -297,41 +309,49 @@ namespace EdlinSoftware.RationalNumbers
             }
         }
 
+        /// <inheritdoc />
         public static implicit operator RationalNumber(byte value)
         {
             return new RationalNumber(value, 1);
         }
 
+        /// <inheritdoc />
         public static implicit operator RationalNumber(sbyte value)
         {
             return new RationalNumber(value, 1);
         }
 
+        /// <inheritdoc />
         public static implicit operator RationalNumber(Int16 value)
         {
             return new RationalNumber(value, 1);
         }
 
+        /// <inheritdoc />
         public static implicit operator RationalNumber(UInt16 value)
         {
             return new RationalNumber(value, 1);
         }
 
+        /// <inheritdoc />
         public static implicit operator RationalNumber(Int32 value)
         {
             return new RationalNumber(value, 1);
         }
 
+        /// <inheritdoc />
         public static implicit operator RationalNumber(UInt32 value)
         {
             return new RationalNumber(value, 1);
         }
 
+        /// <inheritdoc />
         public static implicit operator RationalNumber(Int64 value)
         {
             return new RationalNumber(value, 1);
         }
 
+        /// <inheritdoc />
         public static implicit operator RationalNumber(UInt64 value)
         {
             if (value > long.MaxValue)
@@ -340,6 +360,7 @@ namespace EdlinSoftware.RationalNumbers
             return new RationalNumber((long)value, 1);
         }
 
+        /// <inheritdoc />
         public static explicit operator double(RationalNumber value)
         {
             var n = (double)value.Numerator;
@@ -348,6 +369,7 @@ namespace EdlinSoftware.RationalNumbers
             return n / d;
         }
 
+        /// <inheritdoc />
         public static explicit operator decimal(RationalNumber value)
         {
             var n = (decimal)value.Numerator;
@@ -356,6 +378,7 @@ namespace EdlinSoftware.RationalNumbers
             return n / d;
         }
 
+        /// <inheritdoc />
         public static explicit operator float(RationalNumber value)
         {
             var n = (float)value.Numerator;
