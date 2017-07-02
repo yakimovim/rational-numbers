@@ -149,3 +149,5 @@ UpgradeLog*.htm
 *.bim_*.settings
 # Microsoft Fakes
 FakesAssemblies/
+
+project.lock.json

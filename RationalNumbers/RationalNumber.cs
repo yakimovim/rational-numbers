@@ -397,5 +397,38 @@ namespace EdlinSoftware.RationalNumbers
 
             return -this;
         }
+
+        /// <summary>
+        /// Returns absolute value of given number.
+        /// </summary>
+        /// <param name="rationalNumber">Rational number.</param>
+        public static RationalNumber Abs(RationalNumber rationalNumber)
+        {
+            return rationalNumber.Abs();
+        }
+
+        /// <summary>
+        /// Returns minimum of two numbers.
+        /// </summary>
+        /// <param name="rationalNumber1">First rational number.</param>
+        /// <param name="rationalNumber2">Second rational number.</param>
+        public static RationalNumber Min(RationalNumber rationalNumber1, RationalNumber rationalNumber2)
+        {
+            return rationalNumber1 <= rationalNumber2
+                ? rationalNumber1
+                : rationalNumber2;
+        }
+
+        /// <summary>
+        /// Returns maximum of two numbers.
+        /// </summary>
+        /// <param name="rationalNumber1">First rational number.</param>
+        /// <param name="rationalNumber2">Second rational number.</param>
+        public static RationalNumber Max(RationalNumber rationalNumber1, RationalNumber rationalNumber2)
+        {
+            return rationalNumber1 >= rationalNumber2
+                ? rationalNumber1
+                : rationalNumber2;
+        }
     }
 }

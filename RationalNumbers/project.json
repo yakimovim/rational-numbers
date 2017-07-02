@@ -1,6 +1,6 @@
 ﻿{
   "name": "EdlinSoftware.RationalNumbers",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "EdlinSoftware Rational Numbers Library",
   "copyright": "Copyright © 2016 EdlinSoftware",
   "authors": [
@@ -11,7 +11,7 @@
       "Ivan Iakimov (edlinsoft@gmail.com)"
     ],
     "projectUrl": "https://github.com/yakimovim/rational-numbers",
-    "licenseUrl": "https://github.com/yakimovim/rational-numbers/blob/master/LICENSE",
+    "licenseUrl": "https://raw.githubusercontent.com/yakimovim/rational-numbers/master/LICENSE",
     "iconUrl": "https://raw.githubusercontent.com/yakimovim/rational-numbers/master/RationalNumbers/math.ico",
     "tags": [
       "Math"

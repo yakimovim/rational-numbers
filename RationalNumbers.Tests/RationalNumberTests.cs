@@ -233,14 +233,60 @@ namespace EdlinSoftware.RationalNumbers.Tests
         [InlineData(long.MinValue + 1, 1, false)]
         public void Abs_Values(long numerator1, long denominator1, bool isSame)
         {
+            var rationalNumber = new RationalNumber(numerator1, denominator1);
             if (isSame)
             {
-                Assert.Equal(new RationalNumber(numerator1, denominator1), new RationalNumber(numerator1, denominator1).Abs());
+                Assert.Equal(rationalNumber, rationalNumber.Abs());
+                Assert.Equal(rationalNumber, RationalNumber.Abs(rationalNumber));
             }
             else
             {
-                Assert.Equal(new RationalNumber(-numerator1, denominator1), new RationalNumber(numerator1, denominator1).Abs());
+                Assert.Equal(-rationalNumber, rationalNumber.Abs());
+                Assert.Equal(-rationalNumber, RationalNumber.Abs(rationalNumber));
+            }
+        }
 
+        [Theory]
+        [InlineData(2, 1, 3, 1, true)]
+        [InlineData(2, 1, 2, 1, true)]
+        [InlineData(2, 1, 2, 1, false)]
+        [InlineData(3, 1, 2, 1, false)]
+        [InlineData(-10, 1, 2, 1, true)]
+        [InlineData(1, 1, -20, 1, false)]
+        public void Min_Values(long numerator1, long denominator1, long numerator2,
+            long denominator2, bool minIsFirst)
+        {
+            var rationalNumber1 = new RationalNumber(numerator1, denominator1);
+            var rationalNumber2 = new RationalNumber(numerator2, denominator2);
+            if (minIsFirst)
+            {
+                Assert.Equal(rationalNumber1, RationalNumber.Min(rationalNumber1, rationalNumber2));
+            }
+            else
+            {
+                Assert.Equal(rationalNumber2, RationalNumber.Min(rationalNumber1, rationalNumber2));
+            }
+        }
+
+        [Theory]
+        [InlineData(2, 1, 3, 1, false)]
+        [InlineData(2, 1, 2, 1, false)]
+        [InlineData(2, 1, 2, 1, true)]
+        [InlineData(3, 1, 2, 1, true)]
+        [InlineData(-10, 1, 2, 1, false)]
+        [InlineData(1, 1, -20, 1, true)]
+        public void Max_Values(long numerator1, long denominator1, long numerator2,
+            long denominator2, bool maxIsFirst)
+        {
+            var rationalNumber1 = new RationalNumber(numerator1, denominator1);
+            var rationalNumber2 = new RationalNumber(numerator2, denominator2);
+            if (maxIsFirst)
+            {
+                Assert.Equal(rationalNumber1, RationalNumber.Max(rationalNumber1, rationalNumber2));
+            }
+            else
+            {
+                Assert.Equal(rationalNumber2, RationalNumber.Max(rationalNumber1, rationalNumber2));
             }
         }
     }
